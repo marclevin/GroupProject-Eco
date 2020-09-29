@@ -21,8 +21,6 @@ Public Class frm_Main
     End Sub
 
     Private Sub btn_Load_Click(sender As Object, e As EventArgs) Handles btn_Load.Click
-        Dim better As BetterGrid
-        better = New GridLib.BetterGrid(grid)
-        better.EnterGrid(0, 0, "Test")
+
     End Sub
 End Class
