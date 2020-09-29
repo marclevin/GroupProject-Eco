@@ -123,11 +123,5 @@
     </None>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\GridLib\GridLib.vbproj">
-      <Project>{4c72b6a9-6828-4dde-ab9f-365278e71999}</Project>
-      <Name>GridLib</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
