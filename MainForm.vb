@@ -15,6 +15,7 @@ Imports GridLib
 
 
 Public Class frm_Main
+
     Private localFile As FileStream
     Private Sub frm_Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
