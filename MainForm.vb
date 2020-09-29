@@ -21,6 +21,7 @@ Public Class frm_Main
     End Sub
 
     Private Sub btn_Load_Click(sender As Object, e As EventArgs) Handles btn_Load.Click
-
+        Dim x As Integer
+        x += 1
     End Sub
 End Class
