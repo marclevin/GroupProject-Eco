@@ -2,8 +2,8 @@
 Option Explicit On
 Option Strict On
 Option Infer Off
-Imports System.IO
-Imports GridLib
+
+
 ' *****************************************************************
 ' Team Number: 17
 ' Team Member 1 Details: Musto, M.C.M (219104286)
@@ -14,7 +14,7 @@ Imports GridLib
 ' Class name: frm_Main
 ' *****************************************************************
 Enum Diet
-    Carnivore = 1
+    Carnivore
     Herbivore
     Omnivore
 End Enum

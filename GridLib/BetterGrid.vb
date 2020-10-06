@@ -14,6 +14,7 @@ Option Infer Off
 Public Class BetterGrid
     Private _Columns, _Rows As Integer
     Private _SetterGrid As UJGrid.UJGrid
+    Private _Header_x, _Header_y As String
     ''' <summary>
     ''' Creates the betterGrid object. This allows easier input to the grid.
     ''' </summary>
@@ -53,5 +54,26 @@ Public Class BetterGrid
             Next y
         Next x
     End Sub
+
+    Public Property Header_x As String
+        Get
+            Return _Header_x
+        End Get
+        Set(value As String)
+            _Header_x = value
+            EnterGrid(0, 0, value)
+        End Set
+    End Property
+
+    Public Property Header_y As String
+        Get
+            Return _Header_y
+        End Get
+        Set(value As String)
+            _Header_y = value
+            EnterGrid(0, 1, value)
+        End Set
+    End Property
+
 
 End Class
