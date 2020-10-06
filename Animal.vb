@@ -1,9 +1,6 @@
-﻿
-Option Explicit On
+﻿Option Explicit On
 Option Strict On
 Option Infer Off
-
-
 ' *****************************************************************
 ' Team Number: 17
 ' Team Member 1 Details: Musto, M.C.M (219104286)
@@ -11,7 +8,7 @@ Option Infer Off
 ' Team Member 3 Details: Haag, J.O (220149181)
 ' Team Member 4 Details: Levin, M (220001291)
 ' Practical: Team Project
-' Class name: frm_Main
+' Class name: Animal
 ' *****************************************************************
 Enum Diet
     Carnivore
@@ -23,7 +20,7 @@ Enum ChildType
     'this will make reading it from an array of animals easier if you only want to look as say Rhinos
     'as an example 
     Lion
-    Abbex
+    Addex
 End Enum
 <Serializable()>
 Public MustInherit Class Animal
