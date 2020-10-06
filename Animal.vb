@@ -23,12 +23,12 @@ Enum ChildType
     'this will make reading it from an array of animals easier if you only want to look as say Rhinos
     'as an example 
     Lion
-    Rhino
+    Abbex
 End Enum
 <Serializable()>
 Public MustInherit Class Animal
     Private _ID As String
-    Private _Type As Integer
+    Private ReadOnly _Type As Integer
     Private _Weight As Double
     Private _Diet As Integer
     Private _Sightings() As Integer
