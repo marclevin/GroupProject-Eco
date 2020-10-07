@@ -54,7 +54,7 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="UJGrid, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>E:\Users\marcl\Desktop\UJGrid.dll</HintPath>
+      <HintPath>..\UJGrid.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
