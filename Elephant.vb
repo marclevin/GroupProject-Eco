@@ -15,8 +15,7 @@ Public Class Elephant
     Private _age As Integer
     Private _tusksHaveTrackers As Boolean
     Public Sub New(NumMonths As Integer, age As Integer, tusksHaveTrackers As Boolean)
-        MyBase.New(NumMonths, 2)
-        Diet = 2
+        MyBase.New(NumMonths, ChildType.Elephant)
         _age = age
         _tusksHaveTrackers = tusksHaveTrackers
     End Sub

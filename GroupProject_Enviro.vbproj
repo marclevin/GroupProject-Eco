@@ -79,6 +79,8 @@
   <ItemGroup>
     <Compile Include="Addax.vb" />
     <Compile Include="Animal.vb" />
+    <Compile Include="Baboon.vb" />
+    <Compile Include="Elephant.vb" />
     <Compile Include="Lion.vb" />
     <Compile Include="MainForm.vb">
       <SubType>Form</SubType>

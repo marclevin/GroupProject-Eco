@@ -21,6 +21,8 @@ Enum ChildType
     'as an example 
     Lion
     Addex
+    Elephant
+    Baboon
 End Enum
 <Serializable()>
 Public MustInherit Class Animal

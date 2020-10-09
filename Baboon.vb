@@ -16,19 +16,17 @@ Public Class Baboon
     Private _numBabies As Integer
 
     Public Sub New(NumMonths As Integer, isAgressive As Boolean, numBabies As Integer)
-        MyBase.New(NumMonths, 3)
-        Diet = 3
+        MyBase.New(NumMonths, ChildType.Baboon)
         _isAgressive = isAgressive
-        _numBabies = checkBabies(numBabies) 'checkBabies() has to happen after _isAgressive is set incase the value gets changed
+        _numBabies = numBabies 'checkBabies() has to happen after _isAgressive is set incase the value gets changed
+        checkBabies(numBabies)
     End Sub
-    Private Function checkBabies(ByVal numBabies As Integer) As Integer
-        If numBabies <= 0 Then
-            Return 0
-        Else
+    'Changed to sub since it just sets a value
+    Private Sub checkBabies(ByVal numBabies As Integer)
+        If Not numBabies <= 0 Then
             _isAgressive = True 'all baboons that have babies are agressive
-            Return numBabies
         End If
-    End Function
+    End Sub
 
     Public Property IsAgressive As Boolean
         Get
@@ -44,7 +42,8 @@ Public Class Baboon
             Return _numBabies
         End Get
         Set(value As Integer)
-            _numBabies = checkBabies(value)
+            _numBabies = value
+            checkBabies(NumBabies)
         End Set
     End Property
 End Class
