@@ -50,7 +50,7 @@ Partial Class frm_Main
         Me.SomeGrid.Location = New System.Drawing.Point(145, 58)
         Me.SomeGrid.Name = "SomeGrid"
         Me.SomeGrid.Scrollbars = System.Windows.Forms.ScrollBars.Both
-        Me.SomeGrid.Size = New System.Drawing.Size(507, 178)
+        Me.SomeGrid.Size = New System.Drawing.Size(603, 178)
         Me.SomeGrid.TabIndex = 1
         '
         'btnAddNew
@@ -103,7 +103,7 @@ Partial Class frm_Main
         'cbAnimals
         '
         Me.cbAnimals.FormattingEnabled = True
-        Me.cbAnimals.Items.AddRange(New Object() {"Addax", "Lion", "temp1", "temp2"})
+        Me.cbAnimals.Items.AddRange(New Object() {"Addax", "Lion", "Elephant", "Baboon"})
         Me.cbAnimals.Location = New System.Drawing.Point(12, 215)
         Me.cbAnimals.Name = "cbAnimals"
         Me.cbAnimals.Size = New System.Drawing.Size(127, 21)
@@ -111,7 +111,7 @@ Partial Class frm_Main
         '
         'tbInfo
         '
-        Me.tbInfo.Location = New System.Drawing.Point(680, 58)
+        Me.tbInfo.Location = New System.Drawing.Point(768, 58)
         Me.tbInfo.Multiline = True
         Me.tbInfo.Name = "tbInfo"
         Me.tbInfo.Size = New System.Drawing.Size(356, 178)
@@ -121,7 +121,7 @@ Partial Class frm_Main
         '
         Me.lbInfo.AutoSize = True
         Me.lbInfo.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbInfo.Location = New System.Drawing.Point(676, 35)
+        Me.lbInfo.Location = New System.Drawing.Point(764, 35)
         Me.lbInfo.Name = "lbInfo"
         Me.lbInfo.Size = New System.Drawing.Size(125, 20)
         Me.lbInfo.TabIndex = 9
@@ -129,7 +129,7 @@ Partial Class frm_Main
         '
         'frm_Main
         '
-        Me.ClientSize = New System.Drawing.Size(1074, 342)
+        Me.ClientSize = New System.Drawing.Size(1165, 342)
         Me.Controls.Add(Me.lbInfo)
         Me.Controls.Add(Me.tbInfo)
         Me.Controls.Add(Me.cbAnimals)

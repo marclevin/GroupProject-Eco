@@ -15,13 +15,13 @@ Public Class Baboon
     Private _isAgressive As Boolean
     Private _numBabies As Integer
 
-    Public Sub New(NumMonths As Integer, isAgressive As Boolean, numBabies As Integer)
+    Public Sub New(NumMonths As Integer, numBabies As Integer)
         MyBase.New(NumMonths, ChildType.Baboon)
-        _isAgressive = isAgressive
         _numBabies = numBabies 'checkBabies() has to happen after _isAgressive is set incase the value gets changed
         checkBabies(numBabies)
     End Sub
-    'Changed to sub since it just sets a value
+    'Changed to sub since it just sets a value.
+    'commmit 605ead9
     Private Sub checkBabies(ByVal numBabies As Integer)
         If Not numBabies <= 0 Then
             _isAgressive = True 'all baboons that have babies are agressive

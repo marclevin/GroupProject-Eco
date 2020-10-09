@@ -138,6 +138,26 @@ Public Class frm_Main
                 End Select
                 localLion.TailLength = CDbl(InputBox("Enter the length of the Lion's tail", "Tail Length"))
                 localAnimal = DirectCast(localLion, Animal)
+            Case "Elephant"
+                Dim localAge As Integer : localAge = CInt(InputBox("How old is the Elephant?", "Age Handler"))
+                Dim localBool As Boolean
+                Dim check As DialogResult : check = MessageBox.Show("Are the Elephant's tusks fitted with trackers?", "Tracker Handler", MessageBoxButtons.YesNo)
+                Select Case check
+                    Case DialogResult.Yes
+                        localBool = True
+                    Case DialogResult.No
+                        localBool = False
+                End Select
+                Dim localElephant As New Elephant(CInt(InputBox("Enter the number of months to track the Elephant for.", "Month handler")), localAge, localBool)
+                localAnimal = DirectCast(localElephant, Animal)
+
+            Case "Baboon"
+                Dim numBabies, numMonths As Integer
+                numBabies = CInt(InputBox("Enter the number of babies the Baboon has (If Female):", "Baboon handler"))
+                numMonths = CInt(InputBox("Enter the number of months to track the Baboon for.", "Baboon Handler"))
+                Dim localBaboon As New Baboon(numMonths, numBabies)
+                localAnimal = DirectCast(localBaboon, Animal)
+
         End Select
         For x = 0 To localAnimal.monthTracks
             localAnimal.Sightings(x) = CInt(InputBox($"Enter how many times the animal has been sighted during month {x + 1}", "Month Handler"))
@@ -200,6 +220,10 @@ Reselect:
         Dim localAddax As Addax
         Dim avgMonths As Double
         Dim localLion As Lion
+        Dim localElephant As Elephant
+        Dim cElephant As Integer
+        Dim localBaboon As Baboon
+        Dim cBaboon As Integer
         Dim i As Integer : i = 0
         tbInfo.Clear()
         For Each animalLocal In Animals
@@ -214,8 +238,19 @@ Reselect:
                 cLion += 1
                 Continue For
             End If
+            localElephant = TryCast(animalLocal, Elephant)
+            If Not localElephant Is Nothing Then
+                cElephant += 1
+                Continue For
+            End If
+            localBaboon = TryCast(animalLocal, Baboon)
+            If Not localBaboon Is Nothing Then
+                cBaboon += 1
+                Continue For
+            End If
         Next animalLocal
-        tbInfo.Text += $"Addax Count: {cAddax & vbNewLine}Lion Count: {cLion & vbNewLine}"
+
+        tbInfo.Text += $"Addax Count: {cAddax & vbNewLine}Lion Count: {cLion & vbNewLine}Baboon Count: {cBaboon & vbNewLine}Elephant Count:{cElephant & vbNewLine}"
         tbInfo.Text += $"Average Sightings: {totalSight / avgMonths}"
     End Sub
 

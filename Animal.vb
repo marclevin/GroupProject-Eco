@@ -11,9 +11,9 @@ Option Infer Off
 ' Class name: Animal
 ' *****************************************************************
 Enum DietEnum
-    Carnivore
-    Herbivore
-    Omnivore
+    Carnivore = 0
+    Herbivore = 1
+    Omnivore = 2
 End Enum
 Enum ChildType
     'List the types of children possible 
@@ -72,11 +72,11 @@ Public MustInherit Class Animal
                 'used a select case to make it more clear what the selections are
                 'we just need to make sure that we set it with integers
                 Case DietEnum.Carnivore
-                    _Diet = 1
+                    _Diet = 0
                 Case DietEnum.Herbivore
-                    _Diet = 2
+                    _Diet = 1
                 Case DietEnum.Omnivore
-                    _Diet = 3
+                    _Diet = 2
             End Select
         End Set
     End Property
