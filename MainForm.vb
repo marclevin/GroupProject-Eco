@@ -55,5 +55,8 @@ Public Class frm_Main
                 BF.Serialize(FS, tempAddax)
             End If
         Next
+        FS.Close()
+        BF = Nothing
+        FS = Nothing
     End Sub
 End Class
