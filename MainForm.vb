@@ -4,6 +4,7 @@ Option Infer Off
 
 Imports System.IO
 Imports System.Linq.Expressions
+Imports System.Runtime.Remoting.Messaging
 Imports System.Runtime.Serialization.Formatters.Binary
 Imports GridLib
 
@@ -35,7 +36,11 @@ Public Class frm_Main
     Private Sub frm_Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Doing this here because grid object only created in MyBase.Load
         display = New BetterGrid(SomeGrid)
-        display.Header_x = "Animals:"
+        display.EnterGrid(0, 0, "ID:")
+        display.EnterGrid(1, 0, "Diet:")
+        display.EnterGrid(2, 0, "Weight:")
+        display.EnterGrid(3, 0, "Sightings:")
+        display.EnterGrid(4, 0, "Type:")
     End Sub
 
     'sub routine to serialize derived classes
@@ -60,7 +65,11 @@ Public Class frm_Main
 
     Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
         display.Clear()
-        display.Header_x = "Animals:"
+        display.EnterGrid(0, 0, "ID:")
+        display.EnterGrid(1, 0, "Diet:")
+        display.EnterGrid(2, 0, "Weight:")
+        display.EnterGrid(3, 0, "Sightings:")
+        display.EnterGrid(4, 0, "Type:")
     End Sub
 
     Private Sub btnLoad_Click(sender As Object, e As EventArgs) Handles btnLoad.Click
@@ -75,12 +84,33 @@ Public Class frm_Main
 
     End Sub
 
+    Private Function CheckUnique(ID As String) As Boolean
+        Dim x As Integer
+        If Animals(0) Is Nothing Then Return True
+        For x = 0 To UBound(Animals)
+            If ID = Animals(x).ID Then
+                Return False
+            Else
+                Continue For
+            End If
+        Next x
+        Return True
+    End Function
+
     Private Sub btnAddNew_Click(sender As Object, e As EventArgs) Handles btnAddNew.Click
-        Dim localAnimal As Animal
+        Dim localAnimal As Animal : localAnimal = Nothing
+        Dim localID As String : localID = Nothing
+        Dim rand As New Random
         Dim x As Integer
         If cbAnimals.Text = vbNullString Then
             Return
         End If
+        ReDim Preserve Animals(NumberOfAnimals)
+        While Not CheckUnique(localID)
+            For x = 0 To 9
+                localID += CStr(rand.Next(0, 9))
+            Next x
+        End While
         Select Case cbAnimals.Text
             Case "Addax"
                 Dim localAddax As New Addax(CInt(InputBox("Enter the number of months to track the Addax for.", "Month Handler")))
@@ -106,8 +136,31 @@ Public Class frm_Main
                 localAnimal = DirectCast(localLion, Animal)
         End Select
         For x = 0 To localAnimal.monthTracks
-
+            localAnimal.Sightings(x) = CInt(InputBox($"Enter how many times the animal has been sighted during month {x + 1}", "Month Handler"))
         Next x
+Reselect:
+        Select Case CInt(InputBox($"Enter the diet code of the animal: {vbNewLine} 0: Carnivore {vbNewLine} 1: Herbivore {vbNewLine} 2: Omnivore"))
+            Case DietEnum.Carnivore
+                localAnimal.Diet = DietEnum.Carnivore
+            Case DietEnum.Herbivore
+                localAnimal.Diet = DietEnum.Herbivore
+            Case DietEnum.Omnivore
+                localAnimal.Diet = DietEnum.Omnivore
+            Case Else
+                GoTo Reselect
+        End Select
+
+        localAnimal.Weight = CDbl(InputBox("Enter the weight of the animal:"))
+        localAnimal.ID = localID
+        Animals(NumberOfAnimals) = localAnimal
+        NumberOfAnimals += 1
+    End Sub
+
+    Private Sub PopGrid()
+        Dim x, y As Integer
+        Dim thing As Animal
+        For Each thing In Animals
+        Next thing
     End Sub
 
 End Class

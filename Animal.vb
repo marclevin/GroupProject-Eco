@@ -35,7 +35,7 @@ Public MustInherit Class Animal
         'NumMonths is the number of months we are recording the number of sightings across
         'Making sure -1 because arrays start at 0
         ReDim _Sightings(NumMonths - 1)
-        monthTracks = NumMonths
+        monthTracks = NumMonths - 1
         _Type = ChildType
     End Sub
 
