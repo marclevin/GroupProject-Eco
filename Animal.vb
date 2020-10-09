@@ -29,10 +29,13 @@ Public MustInherit Class Animal
     Private _Weight As Double
     Private _Diet As Integer
     Private _Sightings() As Integer
+    Public monthTracks As Integer
 
     Public Sub New(NumMonths As Integer, ChildType As Integer)
         'NumMonths is the number of months we are recording the number of sightings across
-        ReDim _Sightings(NumMonths)
+        'Making sure -1 because arrays start at 0
+        ReDim _Sightings(NumMonths - 1)
+        monthTracks = NumMonths
         _Type = ChildType
     End Sub
 
