@@ -3,6 +3,7 @@ Option Strict On
 Option Infer Off
 Imports System.IO
 Imports System.Runtime.Serialization.Formatters.Binary
+Imports GridLib
 ' *****************************************************************
 ' Team Number: 17
 ' Team Member 1 Details: Musto, M.C.M (219104286)
@@ -19,26 +20,23 @@ Public Class frm_Main
     'File Variables
     Private FS As FileStream
     Private BF As BinaryFormatter
-    Private Const FNAME As String = "220149181.ipb"
+    Private display As BetterGrid
+
+    Private Const FNAME As String = "animals.xyza"
 
     'Variables for animal
     Private Animals() As Animal
     Private NumberOfAnimals As Integer = 0
 
 
-    Private localFile As FileStream
     Private Sub frm_Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        'Doing this here because grid object only created in MyBase.Load
+        display = New BetterGrid(SomeGrid)
+        display.Header_x = "Animals:"
     End Sub
 
-    Private Sub btn_Load_Click(sender As Object, e As EventArgs) Handles btn_Load.Click
-        Dim x As Integer
-        x += 1
-    End Sub
 
-    Private Sub frm_Main_Load_1(sender As Object, e As EventArgs) Handles MyBase.Load
 
-    End Sub
 
     'sub routine to serialize derived classes
     Private Sub SerializeFiles()
@@ -58,5 +56,18 @@ Public Class frm_Main
         FS.Close()
         BF = Nothing
         FS = Nothing
+    End Sub
+
+    Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
+        display.Clear()
+        display.Header_x = "Animals:"
+    End Sub
+
+    Private Sub btnLoad_Click(sender As Object, e As EventArgs) Handles btnLoad.Click
+
+    End Sub
+
+    Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
+        SerializeFiles()
     End Sub
 End Class
