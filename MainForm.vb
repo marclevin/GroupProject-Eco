@@ -86,6 +86,7 @@ Public Class frm_Main
 
     Private Function CheckUnique(ID As String) As Boolean
         Dim x As Integer
+        If ID Is Nothing Then Return False
         If Animals(0) Is Nothing Then Return True
         For x = 0 To UBound(Animals)
             If ID = Animals(x).ID Then
@@ -107,6 +108,7 @@ Public Class frm_Main
         End If
         ReDim Preserve Animals(NumberOfAnimals)
         While Not CheckUnique(localID)
+            localID = ""
             For x = 0 To 9
                 localID += CStr(rand.Next(0, 9))
             Next x
@@ -139,7 +141,7 @@ Public Class frm_Main
             localAnimal.Sightings(x) = CInt(InputBox($"Enter how many times the animal has been sighted during month {x + 1}", "Month Handler"))
         Next x
 Reselect:
-        Select Case CInt(InputBox($"Enter the diet code of the animal: {vbNewLine} 0: Carnivore {vbNewLine} 1: Herbivore {vbNewLine} 2: Omnivore"))
+        Select Case CInt(InputBox($"Enter the diet code of the animal: {vbNewLine} 0: Carnivore {vbNewLine} 1: Herbivore {vbNewLine} 2: Omnivore", "Diet Handler"))
             Case DietEnum.Carnivore
                 localAnimal.Diet = DietEnum.Carnivore
             Case DietEnum.Herbivore
@@ -150,16 +152,29 @@ Reselect:
                 GoTo Reselect
         End Select
 
-        localAnimal.Weight = CDbl(InputBox("Enter the weight of the animal:"))
+        localAnimal.Weight = CDbl(InputBox("Enter the weight of the animal:", "Weight Handler"))
         localAnimal.ID = localID
         Animals(NumberOfAnimals) = localAnimal
         NumberOfAnimals += 1
+        PopGrid()
     End Sub
 
     Private Sub PopGrid()
-        Dim x, y As Integer
+        Dim x, i As Integer
+        Dim total As Double
+        i = 0
         Dim thing As Animal
         For Each thing In Animals
+            total = 0
+            display.EnterGrid(0, i + 1, thing.ID)
+            display.EnterGrid(1, i + 1, thing.Diet)
+            display.EnterGrid(2, i + 1, thing.Weight)
+            For x = 0 To thing.monthTracks
+                total += thing.Sightings(x)
+            Next x
+            display.EnterGrid(3, i + 1, total)
+            display.EnterGrid(4, i + 1, thing.GetType.Name)
+            i += 1
         Next thing
     End Sub
 
