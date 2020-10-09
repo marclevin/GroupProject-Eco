@@ -28,6 +28,8 @@ Partial Class frm_Main
         Me.btnLoad = New System.Windows.Forms.Button()
         Me.btnClear = New System.Windows.Forms.Button()
         Me.lblGrid = New System.Windows.Forms.Label()
+        Me.btnDisplayMap = New System.Windows.Forms.Button()
+        Me.cbAnimals = New System.Windows.Forms.ComboBox()
         Me.SuspendLayout()
         '
         'btnSave
@@ -51,7 +53,7 @@ Partial Class frm_Main
         '
         'btnAddNew
         '
-        Me.btnAddNew.Location = New System.Drawing.Point(12, 205)
+        Me.btnAddNew.Location = New System.Drawing.Point(12, 178)
         Me.btnAddNew.Name = "btnAddNew"
         Me.btnAddNew.Size = New System.Drawing.Size(127, 31)
         Me.btnAddNew.TabIndex = 2
@@ -87,9 +89,29 @@ Partial Class frm_Main
         Me.lblGrid.TabIndex = 5
         Me.lblGrid.Text = "Animal List:"
         '
+        'btnDisplayMap
+        '
+        Me.btnDisplayMap.Location = New System.Drawing.Point(145, 283)
+        Me.btnDisplayMap.Name = "btnDisplayMap"
+        Me.btnDisplayMap.Size = New System.Drawing.Size(203, 35)
+        Me.btnDisplayMap.TabIndex = 6
+        Me.btnDisplayMap.Text = "Display Map.."
+        Me.btnDisplayMap.UseVisualStyleBackColor = True
+        '
+        'cbAnimals
+        '
+        Me.cbAnimals.FormattingEnabled = True
+        Me.cbAnimals.Items.AddRange(New Object() {"Addax", "Lion", "temp1", "temp2"})
+        Me.cbAnimals.Location = New System.Drawing.Point(12, 215)
+        Me.cbAnimals.Name = "cbAnimals"
+        Me.cbAnimals.Size = New System.Drawing.Size(127, 21)
+        Me.cbAnimals.TabIndex = 7
+        '
         'frm_Main
         '
         Me.ClientSize = New System.Drawing.Size(682, 342)
+        Me.Controls.Add(Me.cbAnimals)
+        Me.Controls.Add(Me.btnDisplayMap)
         Me.Controls.Add(Me.lblGrid)
         Me.Controls.Add(Me.btnClear)
         Me.Controls.Add(Me.btnLoad)
@@ -112,4 +134,6 @@ Partial Class frm_Main
     Friend WithEvents btnLoad As Button
     Friend WithEvents btnClear As Button
     Friend WithEvents lblGrid As Label
+    Friend WithEvents btnDisplayMap As Button
+    Friend WithEvents cbAnimals As ComboBox
 End Class

@@ -70,4 +70,22 @@ Public Class frm_Main
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
         SerializeFiles()
     End Sub
+
+    Private Sub btnDisplayMap_Click(sender As Object, e As EventArgs) Handles btnDisplayMap.Click
+
+    End Sub
+
+    Private Sub btnAddNew_Click(sender As Object, e As EventArgs) Handles btnAddNew.Click
+        Dim localAnimal As Animal
+        If cbAnimals.Text = vbNullString Then
+            Return
+        End If
+        Select Case cbAnimals.Text
+            Case "Addax"
+                localAnimal = New Addax(CInt(InputBox("Enter the number of months to track the Addax for.", "Month Handler")))
+            Case "Lion"
+                localAnimal = New Lion(CInt(InputBox("Enter the number of months to track the Lion for.", "Month Handler")))
+        End Select
+    End Sub
+
 End Class

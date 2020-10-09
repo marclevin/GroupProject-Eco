@@ -10,7 +10,7 @@ Option Infer Off
 ' Practical: Team Project
 ' Class name: Animal
 ' *****************************************************************
-Enum Diet
+Enum DietEnum
     Carnivore
     Herbivore
     Omnivore
@@ -58,7 +58,7 @@ Public MustInherit Class Animal
         End Set
     End Property
 
-    Public Property Deit As Integer
+    Public Property Diet As Integer
         Get
             Return _Diet
         End Get
@@ -66,11 +66,11 @@ Public MustInherit Class Animal
             Select Case (value)
                 'used a select case to make it more clear what the selections are
                 'we just need to make sure that we set it with integers
-                Case Diet.Carnivore
+                Case DietEnum.Carnivore
                     _Diet = 1
-                Case Diet.Herbivore
+                Case DietEnum.Herbivore
                     _Diet = 2
-                Case Diet.Omnivore
+                Case DietEnum.Omnivore
                     _Diet = 3
             End Select
         End Set
