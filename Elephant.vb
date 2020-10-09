@@ -1,6 +1,7 @@
 ﻿Option Explicit On
 Option Strict On
 Option Infer Off
+
 ' *****************************************************************
 ' Team Number: 17
 ' Team Member 1 Details: Musto, M.C.M (219104286)
@@ -14,6 +15,7 @@ Public Class Elephant
     Inherits Animal
     Private _age As Integer
     Private _tusksHaveTrackers As Boolean
+
     Public Sub New(NumMonths As Integer, age As Integer, tusksHaveTrackers As Boolean)
         MyBase.New(NumMonths, ChildType.Elephant)
         _age = age
@@ -37,4 +39,5 @@ Public Class Elephant
             _tusksHaveTrackers = value
         End Set
     End Property
+
 End Class

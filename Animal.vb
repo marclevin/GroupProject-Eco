@@ -1,6 +1,7 @@
 ﻿Option Explicit On
 Option Strict On
 Option Infer Off
+
 ' *****************************************************************
 ' Team Number: 17
 ' Team Member 1 Details: Musto, M.C.M (219104286)
@@ -15,15 +16,19 @@ Enum DietEnum
     Herbivore = 1
     Omnivore = 2
 End Enum
+
 Enum ChildType
-    'List the types of children possible 
+
+    'List the types of children possible
     'this will make reading it from an array of animals easier if you only want to look as say Rhinos
-    'as an example 
+    'as an example
     Lion
+
     Addex
     Elephant
     Baboon
 End Enum
+
 <Serializable()>
 Public MustInherit Class Animal
     Private _ID As String
@@ -89,4 +94,5 @@ Public MustInherit Class Animal
             _Sightings(Index) = value
         End Set
     End Property
+
 End Class

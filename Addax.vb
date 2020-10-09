@@ -1,6 +1,7 @@
 ﻿Option Explicit On
 Option Strict On
 Option Infer Off
+
 ' *****************************************************************
 ' Team Number: 17
 ' Team Member 1 Details: Musto, M.C.M (219104286)
@@ -14,6 +15,7 @@ Public Class Addax
     Inherits Animal
     Private _HornLength As Double
     Private _HasRoundWorms As Boolean
+
     Public Sub New(NumMonths As Integer)
         MyBase.New(NumMonths, 1)
     End Sub
@@ -35,4 +37,5 @@ Public Class Addax
             _HasRoundWorms = value
         End Set
     End Property
+
 End Class

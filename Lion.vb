@@ -1,6 +1,7 @@
 ﻿Option Explicit On
 Option Strict On
 Option Infer Off
+
 ' *****************************************************************
 ' Team Number: 17
 ' Team Member 1 Details: Musto, M.C.M (219104286)
@@ -36,4 +37,5 @@ Public Class Lion
             _IsSolitary = value
         End Set
     End Property
+
 End Class

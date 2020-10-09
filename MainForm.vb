@@ -46,7 +46,7 @@ Public Class frm_Main
 
     'sub routine to serialize derived classes
     Private Sub SerializeFiles()
-        FS = New FileStream(FNAME, FileMode.Open, FileAccess.Write)
+        FS = New FileStream(FNAME, FileMode.OpenOrCreate, FileAccess.Write)
         BF = New BinaryFormatter()
         For x As Integer = 1 To NumberOfAnimals
             If Animals(x).GetType.ToString() = "GroupProject_Enviro.Lion" Then
@@ -62,6 +62,8 @@ Public Class frm_Main
         FS.Close()
         BF = Nothing
         FS = Nothing
+        MessageBox.Show("Animals recorded.")
+
     End Sub
 
     Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
@@ -75,7 +77,7 @@ Public Class frm_Main
     End Sub
 
     Private Sub btnLoad_Click(sender As Object, e As EventArgs) Handles btnLoad.Click
-
+        'Load event goes here
     End Sub
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click

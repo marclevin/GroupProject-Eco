@@ -1,6 +1,7 @@
 ﻿Option Explicit On
 Option Strict On
 Option Infer Off
+
 ' *****************************************************************
 ' Team Number: 17
 ' Team Member 1 Details: Musto, M.C.M (219104286)
@@ -20,6 +21,7 @@ Public Class Baboon
         _numBabies = numBabies 'checkBabies() has to happen after _isAgressive is set incase the value gets changed
         checkBabies(numBabies)
     End Sub
+
     'Changed to sub since it just sets a value.
     'commmit 605ead9
     Private Sub checkBabies(ByVal numBabies As Integer)
@@ -46,4 +48,5 @@ Public Class Baboon
             checkBabies(NumBabies)
         End Set
     End Property
+
 End Class
