@@ -30,6 +30,8 @@ Partial Class frm_Main
         Me.lblGrid = New System.Windows.Forms.Label()
         Me.btnDisplayMap = New System.Windows.Forms.Button()
         Me.cbAnimals = New System.Windows.Forms.ComboBox()
+        Me.tbInfo = New System.Windows.Forms.TextBox()
+        Me.lbInfo = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'btnSave
@@ -83,7 +85,7 @@ Partial Class frm_Main
         '
         Me.lblGrid.AutoSize = True
         Me.lblGrid.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblGrid.Location = New System.Drawing.Point(164, 35)
+        Me.lblGrid.Location = New System.Drawing.Point(141, 35)
         Me.lblGrid.Name = "lblGrid"
         Me.lblGrid.Size = New System.Drawing.Size(90, 20)
         Me.lblGrid.TabIndex = 5
@@ -107,9 +109,29 @@ Partial Class frm_Main
         Me.cbAnimals.Size = New System.Drawing.Size(127, 21)
         Me.cbAnimals.TabIndex = 7
         '
+        'tbInfo
+        '
+        Me.tbInfo.Location = New System.Drawing.Point(680, 58)
+        Me.tbInfo.Multiline = True
+        Me.tbInfo.Name = "tbInfo"
+        Me.tbInfo.Size = New System.Drawing.Size(356, 178)
+        Me.tbInfo.TabIndex = 8
+        '
+        'lbInfo
+        '
+        Me.lbInfo.AutoSize = True
+        Me.lbInfo.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbInfo.Location = New System.Drawing.Point(676, 35)
+        Me.lbInfo.Name = "lbInfo"
+        Me.lbInfo.Size = New System.Drawing.Size(125, 20)
+        Me.lbInfo.TabIndex = 9
+        Me.lbInfo.Text = "Info Breakdown:"
+        '
         'frm_Main
         '
-        Me.ClientSize = New System.Drawing.Size(682, 342)
+        Me.ClientSize = New System.Drawing.Size(1074, 342)
+        Me.Controls.Add(Me.lbInfo)
+        Me.Controls.Add(Me.tbInfo)
         Me.Controls.Add(Me.cbAnimals)
         Me.Controls.Add(Me.btnDisplayMap)
         Me.Controls.Add(Me.lblGrid)
@@ -136,4 +158,6 @@ Partial Class frm_Main
     Friend WithEvents lblGrid As Label
     Friend WithEvents btnDisplayMap As Button
     Friend WithEvents cbAnimals As ComboBox
+    Friend WithEvents tbInfo As TextBox
+    Friend WithEvents lbInfo As Label
 End Class

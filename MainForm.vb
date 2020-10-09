@@ -3,8 +3,6 @@ Option Strict On
 Option Infer Off
 
 Imports System.IO
-Imports System.Linq.Expressions
-Imports System.Runtime.Remoting.Messaging
 Imports System.Runtime.Serialization.Formatters.Binary
 Imports GridLib
 
@@ -26,6 +24,8 @@ Public Class frm_Main
     Private BF As BinaryFormatter
     Private display As BetterGrid
 
+    Private totalSight As Double
+
     Private Const FNAME As String = "animals.xyza"
 
     'Variables for animal
@@ -40,7 +40,8 @@ Public Class frm_Main
         display.EnterGrid(1, 0, "Diet:")
         display.EnterGrid(2, 0, "Weight:")
         display.EnterGrid(3, 0, "Sightings:")
-        display.EnterGrid(4, 0, "Type:")
+        display.EnterGrid(4, 0, "Months:")
+        display.EnterGrid(5, 0, "Type:")
     End Sub
 
     'sub routine to serialize derived classes
@@ -69,7 +70,8 @@ Public Class frm_Main
         display.EnterGrid(1, 0, "Diet:")
         display.EnterGrid(2, 0, "Weight:")
         display.EnterGrid(3, 0, "Sightings:")
-        display.EnterGrid(4, 0, "Type:")
+        display.EnterGrid(4, 0, "Months:")
+        display.EnterGrid(5, 0, "Type:")
     End Sub
 
     Private Sub btnLoad_Click(sender As Object, e As EventArgs) Handles btnLoad.Click
@@ -88,7 +90,7 @@ Public Class frm_Main
         Dim x As Integer
         If ID Is Nothing Then Return False
         If Animals(0) Is Nothing Then Return True
-        For x = 0 To UBound(Animals)
+        For x = 0 To UBound(Animals) - 1
             If ID = Animals(x).ID Then
                 Return False
             Else
@@ -152,11 +154,12 @@ Reselect:
                 GoTo Reselect
         End Select
 
-        localAnimal.Weight = CDbl(InputBox("Enter the weight of the animal:", "Weight Handler"))
+        localAnimal.Weight = CDbl(InputBox("Enter the weight of the animal (KG):", "Weight Handler"))
         localAnimal.ID = localID
         Animals(NumberOfAnimals) = localAnimal
         NumberOfAnimals += 1
         PopGrid()
+        UpdateInfo()
     End Sub
 
     Private Sub PopGrid()
@@ -164,18 +167,56 @@ Reselect:
         Dim total As Double
         i = 0
         Dim thing As Animal
+        Dim localDiet As String : localDiet = vbNullString
+
         For Each thing In Animals
             total = 0
+            Select Case thing.Diet
+                Case DietEnum.Carnivore
+                    localDiet = "Carnivore"
+                Case DietEnum.Herbivore
+                    localDiet = "Herbivore"
+                Case DietEnum.Omnivore
+                    localDiet = "Omnivore"
+            End Select
             display.EnterGrid(0, i + 1, thing.ID)
-            display.EnterGrid(1, i + 1, thing.Diet)
+            display.EnterGrid(1, i + 1, localDiet)
             display.EnterGrid(2, i + 1, thing.Weight)
             For x = 0 To thing.monthTracks
                 total += thing.Sightings(x)
             Next x
+            totalSight = total
+
             display.EnterGrid(3, i + 1, total)
-            display.EnterGrid(4, i + 1, thing.GetType.Name)
+            display.EnterGrid(4, i + 1, thing.monthTracks + 1)
+            display.EnterGrid(5, i + 1, thing.GetType.Name)
             i += 1
         Next thing
+    End Sub
+
+    Public Sub UpdateInfo()
+        Dim animalLocal As Animal
+        Dim cAddax, cLion As Double
+        Dim localAddax As Addax
+        Dim avgMonths As Double
+        Dim localLion As Lion
+        Dim i As Integer : i = 0
+        tbInfo.Clear()
+        For Each animalLocal In Animals
+            avgMonths += animalLocal.monthTracks + 1
+            localAddax = TryCast(animalLocal, Addax)
+            If Not localAddax Is Nothing Then
+                cAddax += 1
+                Continue For
+            End If
+            localLion = TryCast(animalLocal, Lion)
+            If Not localLion Is Nothing Then
+                cLion += 1
+                Continue For
+            End If
+        Next animalLocal
+        tbInfo.Text += $"Addax Count: {cAddax & vbNewLine}Lion Count: {cLion & vbNewLine}"
+        tbInfo.Text += $"Average Sightings: {totalSight / avgMonths}"
     End Sub
 
 End Class
