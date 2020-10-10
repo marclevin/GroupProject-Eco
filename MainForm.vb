@@ -63,17 +63,20 @@ Public Class frm_Main
 
     'sub routine to deserialize derived class
     Private Sub DeserializeFiles()
+        Dim tempAnimal As Animal
+        Dim i As Integer = 0
+        'Empty and unbind index
+        ReDim Animals(-1)
         FS = New FileStream(FNAME, FileMode.Open, FileAccess.Read)
         BF = New BinaryFormatter()
-
         While FS.Position < FS.Length
-            Dim tempObj As Object
-            tempObj = BF.Deserialize(FS)
-            Dim tempAnimal As Animal
-            tempAnimal = DirectCast(tempObj, Animal)
-            ' Not sure where you want to read the data to, or what functions the data should display
-            ' tbInfo.Text &= tempAnimal
+            tempAnimal = DirectCast(BF.Deserialize(FS), Animal)
+            ReDim Preserve Animals(i)
+            Animals(i) = tempAnimal
         End While
+        FS.Close()
+        FS = Nothing
+        BF = Nothing
     End Sub
 
 
@@ -89,7 +92,13 @@ Public Class frm_Main
     End Sub
 
     Private Sub btnLoad_Click(sender As Object, e As EventArgs) Handles btnLoad.Click
-        'Load event goes here
+        Dim check As DialogResult : check = MessageBox.Show($"Warning: All unsaved data will be lost.{vbNewLine}Continue?", "Warning", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning)
+        If Not check = DialogResult.OK Then
+            Return
+        End If
+        DeserializeFiles()
+        PopGrid()
+        UpdateInfo()
     End Sub
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
