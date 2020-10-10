@@ -11,6 +11,7 @@ Option Infer Off
 ' Practical: Team Project
 ' Class name: Addax
 ' *****************************************************************
+<Serializable()>
 Public Class Addax
     Inherits Animal
     Private _HornLength As Double

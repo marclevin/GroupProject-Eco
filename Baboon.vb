@@ -11,6 +11,7 @@ Option Infer Off
 ' Practical: Team Project
 ' Class name: Baboon
 ' *****************************************************************
+<Serializable()>
 Public Class Baboon
     Inherits Animal
     Private _isAgressive As Boolean

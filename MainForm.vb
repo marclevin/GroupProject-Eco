@@ -50,22 +50,33 @@ Public Class frm_Main
     Private Sub SerializeFiles()
         FS = New FileStream(FNAME, FileMode.OpenOrCreate, FileAccess.Write)
         BF = New BinaryFormatter()
-        For x As Integer = 1 To NumberOfAnimals
-            If Animals(x).GetType.ToString() = "GroupProject_Enviro.Lion" Then
-                Dim tempLion As Lion
-                tempLion = DirectCast(Animals(x), Lion)
-                BF.Serialize(FS, tempLion)
-            ElseIf Animals(x).GetType.ToString() = "GroupProject_Enviro.Addax" Then
-                Dim tempAddax As Addax
-                tempAddax = DirectCast(Animals(x), Addax)
-                BF.Serialize(FS, tempAddax)
-            End If
+        For x As Integer = 0 To NumberOfAnimals - 1
+            Dim tempAnimal As Animal
+            tempAnimal = DirectCast(Animals(x), Animal)
+            BF.Serialize(FS, tempAnimal)
         Next
         FS.Close()
         BF = Nothing
         FS = Nothing
         MessageBox.Show("Animals recorded.")
     End Sub
+
+    'sub routine to deserialize derived class
+    Private Sub DeserializeFiles()
+        FS = New FileStream(FNAME, FileMode.Open, FileAccess.Read)
+        BF = New BinaryFormatter()
+
+        While FS.Position < FS.Length
+            Dim tempObj As Object
+            tempObj = BF.Deserialize(FS)
+            Dim tempAnimal As Animal
+            tempAnimal = DirectCast(tempObj, Animal)
+            ' Not sure where you want to read the data to, or what functions the data should display
+            ' tbInfo.Text &= tempAnimal
+        End While
+    End Sub
+
+
 
     Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
         display.Clear()
