@@ -11,6 +11,7 @@ Option Infer Off
 ' Practical: Team Project
 ' Class name: Lion
 ' *****************************************************************
+<Serializable()>
 Public Class Lion
     Inherits Animal
     Private _TailLength As Double

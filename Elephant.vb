@@ -11,6 +11,7 @@ Option Infer Off
 ' Practical: Team Project
 ' Class name: Elephant
 ' *****************************************************************
+<Serializable()>
 Public Class Elephant
     Inherits Animal
     Private _age As Integer
