@@ -3,6 +3,7 @@ Option Strict On
 Option Infer Off
 
 Imports System.IO
+Imports System.Net.Http.Headers
 Imports System.Runtime.Serialization.Formatters.Binary
 Imports GridLib
 
@@ -20,7 +21,8 @@ Public Class frm_Main
 
     'File Variables
     Private FS As FileStream
-
+    Private Const MapMax_X As Integer = 8
+    Private Const MapMax_Y As Integer = 12
     Private BF As BinaryFormatter
     Private display As BetterGrid
 
@@ -63,7 +65,6 @@ Public Class frm_Main
         BF = Nothing
         FS = Nothing
         MessageBox.Show("Animals recorded.")
-
     End Sub
 
     Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
@@ -85,11 +86,15 @@ Public Class frm_Main
     End Sub
 
     Private Sub btnDisplayMap_Click(sender As Object, e As EventArgs) Handles btnDisplayMap.Click
-
+        Dim newMap As New mapInt
+        newMap.AnimalMap = Animals
+        newMap.displayMap()
+        newMap.ShowDialog()
     End Sub
 
     Private Function CheckUnique(ID As String) As Boolean
         Dim x As Integer
+        'Making sure we don't check an empty ID or try and check against an empty array
         If ID Is Nothing Then Return False
         If Animals(0) Is Nothing Then Return True
         For x = 0 To UBound(Animals) - 1
@@ -111,6 +116,7 @@ Public Class frm_Main
             Return
         End If
         ReDim Preserve Animals(NumberOfAnimals)
+        'Making a unique ID for our animal
         While Not CheckUnique(localID)
             localID = ""
             For x = 0 To 9
@@ -164,8 +170,9 @@ Public Class frm_Main
         For x = 0 To localAnimal.monthTracks
             localAnimal.Sightings(x) = CInt(InputBox($"Enter how many times the animal has been sighted during month {x + 1}", "Month Handler"))
         Next x
+        'GoTo Label as we want to be sure the user selects a valid number.
 Reselect:
-        Select Case CInt(InputBox($"Enter the diet code of the animal: {vbNewLine} 0: Carnivore {vbNewLine} 1: Herbivore {vbNewLine} 2: Omnivore", "Diet Handler"))
+        Select Case CInt(InputBox($"Enter the diet code of the animal: {vbNewLine}0: Carnivore {vbNewLine}1: Herbivore {vbNewLine}2: Omnivore", "Diet Handler"))
             Case DietEnum.Carnivore
                 localAnimal.Diet = DietEnum.Carnivore
             Case DietEnum.Herbivore
@@ -177,6 +184,9 @@ Reselect:
         End Select
 
         localAnimal.Weight = CDbl(InputBox("Enter the weight of the animal (KG):", "Weight Handler"))
+        'Random positions'
+        localAnimal.X = rand.Next(0, MapMax_X)
+        localAnimal.Y = rand.Next(0, MapMax_Y)
         localAnimal.ID = localID
         Animals(NumberOfAnimals) = localAnimal
         NumberOfAnimals += 1

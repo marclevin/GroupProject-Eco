@@ -18,12 +18,10 @@ Enum DietEnum
 End Enum
 
 Enum ChildType
-
     'List the types of children possible
     'this will make reading it from an array of animals easier if you only want to look as say Rhinos
     'as an example
     Lion
-
     Addex
     Elephant
     Baboon
@@ -32,6 +30,7 @@ End Enum
 <Serializable()>
 Public MustInherit Class Animal
     Private _ID As String
+    Private _x, _y As Integer
     Private ReadOnly _Type As Integer
     Private _Weight As Double
     Private _Diet As Integer
@@ -94,5 +93,24 @@ Public MustInherit Class Animal
             _Sightings(Index) = value
         End Set
     End Property
+
+
+    Public Property X As Integer
+        Get
+            Return _x
+        End Get
+        Set(value As Integer)
+            _x = value
+        End Set
+    End Property
+    Public Property Y As Integer
+        Get
+            Return _y
+        End Get
+        Set(value As Integer)
+            _y = value
+        End Set
+    End Property
+
 
 End Class
