@@ -82,7 +82,7 @@ Public Class frm_Main
     End Sub
 
 
-
+    'clears the grid'
     Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
         display.Clear()
         display.EnterGrid(0, 0, "ID:")
@@ -216,6 +216,7 @@ Reselect:
         UpdateInfo()
     End Sub
 
+    'Populates the grid with the information
     Private Sub PopGrid()
         Dim x, i As Integer
         Dim total As Double
@@ -248,6 +249,7 @@ Reselect:
         Next thing
     End Sub
 
+    'This adds information to the Information TextBox
     Public Sub UpdateInfo()
         Dim animalLocal As Animal
         Dim cAddax, cLion As Double
@@ -260,6 +262,7 @@ Reselect:
         Dim cBaboon As Integer
         Dim i As Integer : i = 0
         tbInfo.Clear()
+        'Counting our various types
         For Each animalLocal In Animals
             avgMonths += animalLocal.monthTracks + 1
             localAddax = TryCast(animalLocal, Addax)
