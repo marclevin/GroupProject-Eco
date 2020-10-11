@@ -285,7 +285,7 @@ Reselect:
         Next animalLocal
 
         tbInfo.Text += $"Addax Count: {cAddax & vbNewLine}Lion Count: {cLion & vbNewLine}Baboon Count: {cBaboon & vbNewLine}Elephant Count:{cElephant & vbNewLine}"
-        tbInfo.Text += $"Average Sightings: {totalSight / avgMonths}"
+        tbInfo.Text += $"Average Sightings: {Format(totalSight / avgMonths, "0.##")}"
     End Sub
 
 End Class
